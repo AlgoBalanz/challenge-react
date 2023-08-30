@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import "./App.css";
+import Table from "./components/Table";
+import Input from "./components/Input";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [comments, setComments] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+
+    const getFilterComments = () => {
+        return comments;
+    };
+
+    return (
+        <div className="content">
+            <Header contentValue={"This is a header"} />
+
+            <Input
+                labelName={"Search: "}
+                input={inputValue}
+                setInput={setInputValue}
+                name={"Input Search"}
+            />
+
+            <Table data={getFilterComments()} />
+
+            <Footer contentValue={"This is a footer"} />
+        </div>
+    );
 }
 
 export default App;
